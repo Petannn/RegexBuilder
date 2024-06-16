@@ -2,11 +2,11 @@
 
 namespace RegexBuilder.Conditions;
 
-public class AnyWorld : ICondition
+public class AnyWord : ICondition
 {
     private string _pattern;
 
-    public AnyWorld(string type)
+    public AnyWord(string type)
     {
         _pattern = string.Format(CultureInfo.InvariantCulture, "\\b{0}+\\b", type);
     }
