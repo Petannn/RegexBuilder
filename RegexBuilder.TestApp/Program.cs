@@ -1,7 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using RegexBuilder.Conditions;
-using RegexBuilder.Groups;
-
+using RegexBuilder.Extensions;
 
 namespace RegexBuilder.TestApp
 {
@@ -9,21 +7,28 @@ namespace RegexBuilder.TestApp
     {
         static void Main(string[] args)
         {
-            IRegexBuilder builder = new RegexBuilder();
+            var regexBuilder = new RegexBuilder();
 
-            builder.Any(new Literal("ahoj"), new Literal("hi"), new Literal("ola"), new Literal("hello"));
-            builder.SkipWhiteSpaces();
-            builder.Any(new Literal("number"), new Literal("name"));
-            builder.SkipWhiteSpaces();
-            builder.Any(
-                 b => b.If(new Literal("number"), new AnyWord(MetaChars.AnyDigit)),
-                                b => b.If(new Literal("name"),   new AnyWord(MetaChars.WordCharacter)));
+            regexBuilder
+                .Group(g =>
+                      g.WordChar()
+                       .OneOrMoreTimes()
+                       .Dot()
+                       .ZeroOrOneTime())
+                .OneOrMoreTimes()
+                .Add("@")
+                .Group(g =>
+                      g.WordChar()
+                       .OneOrMoreTimes()
+                       .Dot()
+                       .ZeroOrOneTime()
+                ).OneOrMoreTimes();
 
-            var r = builder.Build();
-            Console.WriteLine(r);
+            regexBuilder.Group(q => q.Add("@").OneOrMoreTimes()).AsFewAsPossibleTimes();
 
-
-            var matches = r.Matches("hello number 1234 1234 ");
+            var regex = regexBuilder.Build(RegexOptions.Multiline);
+            Console.WriteLine(regex);
+            var matches = regex.Matches("xxxx.yyyyy@zzzzzz.com");
 
             foreach (Match match in matches)
             {
