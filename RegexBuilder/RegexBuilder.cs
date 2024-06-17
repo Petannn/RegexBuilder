@@ -1,17 +1,26 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
 
 namespace RegexBuilder
 {
-    public interface IRegexBuilder : IConstrainBuilder<RegexBuilder, IRegexBuilder>
+    public interface IRegexBuilder
     {
-        Regex Build(RegexOptions option = RegexOptions.None);
+        IRegexBuilder Append(string text);
+        string ToString();
     }
-    
-    public class RegexBuilder : ConstrainBuilder<RegexBuilder,IRegexBuilder>, IRegexBuilder
+
+    public class RegexBuilder : IRegexBuilder
     {
-        public Regex Build(RegexOptions options)
+        private readonly StringBuilder _builder = new();
+
+        public IRegexBuilder Append(string text)
         {
-            return new Regex(ToRegexPattern(), options);
+            _builder.Append(text);
+            return this;
+        }
+
+        public override string ToString()
+        {
+            return _builder.ToString();
         }
     }
 }
