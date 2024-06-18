@@ -1,38 +1,36 @@
 ﻿using System.Text;
 
-namespace RegexBuilder
+namespace RegexBuilder;
+
+public interface IOptionBuilder
 {
+    IOptionBuilder AddOption(string text);
+}
 
-    public interface IOptionBuilder 
+public interface IRegexBuilder : IOptionBuilder
+{
+    IRegexBuilder Append(string text);
+    string ToString();
+}
+
+public class RegexBuilder : IRegexBuilder
+{
+    private readonly StringBuilder _builder = new();
+
+    public IRegexBuilder Append(string text)
     {
-        IOptionBuilder AddOption(string text);
+        _builder.Append(text);
+        return this;
     }
 
-    public interface IRegexBuilder: IOptionBuilder
+    public IOptionBuilder AddOption(string text)
     {
-        IRegexBuilder Append(string text);
-        string ToString();
+        Append(text);
+        return this;
     }
 
-    public class RegexBuilder : IRegexBuilder
+    public override string ToString()
     {
-        private readonly StringBuilder _builder = new();
-
-        public IRegexBuilder Append(string text)
-        {
-            _builder.Append(text);
-            return this;
-        }
-        
-        public IOptionBuilder AddOption(string text)
-        {
-            Append(text);
-            return this;
-        }
-
-        public override string ToString()
-        {
-            return _builder.ToString();
-        }
+        return _builder.ToString();
     }
 }
