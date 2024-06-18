@@ -25,7 +25,6 @@
             return builder.Append("(?>");
         }
 
-
         public static IRegexBuilder EndGroup(this IRegexBuilder builder)
         {
             return builder.Append(")");
@@ -63,31 +62,50 @@
             return builder;
         }
 
-        public static IRegexBuilder OptionGroup(this IRegexBuilder builder, Action<IRegexBuilder> optionExpression, Action<IRegexBuilder> expression)
+        public static IRegexBuilder OptionGroup<TCurrent>(this TCurrent builder, Action<IOptionBuilder>? onOption, Action<IOptionBuilder>? offOption, Action<IRegexBuilder> expression) 
+            where TCurrent : IRegexBuilder , IOptionBuilder
         {
             builder.Append("(?");
-            optionExpression(builder);
-            builder.Append(")");
-
+            onOption?.Invoke(builder);
+            if (offOption != null)
+            {
+                builder.Append("-");
+                offOption(builder);
+            }
+            builder.Append(":");
             expression(builder);
-
-            builder.Append("(?-");
-            optionExpression(builder);
             builder.Append(")");
-
             return builder;
         }
 
-        public static IRegexBuilder OptionGroup(this IRegexBuilder builder, string optionExpression, Action<IRegexBuilder> expression)
+        public static IRegexBuilder OptionGroup<TCurrent>(this TCurrent builder, Action<IOptionBuilder>? onOption, Action<IOptionBuilder>? offOption) 
+            where TCurrent : IRegexBuilder, IOptionBuilder
         {
             builder.Append("(?");
-            builder.Append(optionExpression);
+            onOption?.Invoke(builder);
+            if (offOption != null)
+            {
+                builder.Append("-");
+                offOption(builder);
+            }
             builder.Append(")");
+            return builder;
+        }
 
+        public static IRegexBuilder OptionGroup(this IRegexBuilder builder, string option, Action<IRegexBuilder> expression)
+        {
+            builder.Append("(?");
+            builder.Append(option);
+            builder.Append(":");
             expression(builder);
+            builder.Append(")");
+            return builder;
+        }
 
-            builder.Append("(?-");
-            builder.Append(optionExpression);
+        public static IRegexBuilder OptionGroup(this IRegexBuilder builder, string option)
+        {
+            builder.Append("(?");
+            builder.Append(option);
             builder.Append(")");
             return builder;
         }

@@ -2,29 +2,29 @@
 {
     public static class OptionsExtensions
     {
-        public static IRegexBuilder IgnoreCase(this IRegexBuilder builder)
+        public static IOptionBuilder IgnoreCase(this IOptionBuilder builder)
         {
-            return builder.Append("i");
+            return builder.AddOption("i");
         }
 
-        public static IRegexBuilder MultiLineMode(this IRegexBuilder builder)
+        public static IOptionBuilder MultiLineMode(this IOptionBuilder builder)
         {
-            return builder.Append("m");
+            return builder.AddOption("m");
         }
 
-        public static IRegexBuilder SingleLineMode(this IRegexBuilder builder)
+        public static IOptionBuilder SingleLineMode(this IOptionBuilder builder)
         {
-            return builder.Append("s");
+            return builder.AddOption("s");
         }
 
-        public static IRegexBuilder DoNotCaptureUnnamedGroups(this IRegexBuilder builder)
+        public static IOptionBuilder DoNotCaptureUnnamedGroups(this IOptionBuilder builder)
         {
-            return builder.Append("n");
+            return builder.AddOption("n");
         }
 
-        public static IRegexBuilder IgnoreUnescapedWhitespaceInPattern(this IRegexBuilder builder)
+        public static IOptionBuilder IgnoreUnescapedWhitespaceInPattern(this IOptionBuilder builder)
         {
-            return builder.Append("x");
+            return builder.AddOption("x");
         }
     }
 }
