@@ -4,6 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>PetrOscadal.RegexBuilder</PackageId>
+    <Version>1.0.0</Version>
+    <Author>Petr Oščádal</Author>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>RegexBuilder</Title>
+    <Authors>Petr Oščádal</Authors>
   </PropertyGroup>
 
 	<ItemGroup>
