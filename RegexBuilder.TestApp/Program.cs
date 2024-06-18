@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using RegexBuilder.Extensions;
 
 namespace RegexBuilder.TestApp
@@ -8,29 +9,20 @@ namespace RegexBuilder.TestApp
         static void Main(string[] args)
         {
             IRegexBuilder regexBuilder = new RegexBuilder();
-
             regexBuilder
-                .Group(g =>
-                      g.WordChar().OneOrMoreTimes()
-                       .Dot().ZeroOrOneTime())
-                .OneOrMoreTimes()
-                .Add("@")
-                .Group(g =>
-                      g.WordChar().OneOrMoreTimes()
-                       .Dot()).OneOrMoreTimes()
-                .WordChar().AtLeastTimes(2);
+                .Add("Hello")
+                .WhiteSpace()
+                .Group(q =>
+                    q.Add("world")
+                        .Or()
+                        .Add("universe"));
 
-            regexBuilder.Group(q => q.Add("@").OneOrMoreTimes()).AsFewAsPossibleTimes();
-
-
-
-            var regex = regexBuilder.Build();
-            Console.WriteLine(regex);
-            var matches = regex.Matches("xxx.yyyyyyy@zzzz.com   cccc.xxx.yyyyyyy@zzzz.com aaaa@bbb.com cccc@dddd.eeee.com  xxx.yyyyyyyzzzz.com  xxx.yyyyyyy@zzzz");
-
-            foreach (Match match in matches)
+            var regex = regexBuilder.Build(); // pattern: Hello\s(world|universe)
+            Console.WriteLine("pattern: " + regex);
+            var matches = regex.Matches("Hello world Hello universe"); // match1: "Hello world" match2:  "Hello universe"
+            for (int i = 0; i < matches.Count; i++)
             {
-                Console.WriteLine(match);
+                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "match{0}: \"{1}\"", i+1, matches[i]));
             }
         }
     }
