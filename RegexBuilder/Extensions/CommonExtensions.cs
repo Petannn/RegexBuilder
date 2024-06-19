@@ -20,29 +20,34 @@ public static class CommonExtensions
         string[] escapingChars = ["\\","^",   "$",   ".",   "|",   "?",   "*",   "+",   "(",   ")",   "[",   "]",   "{",   "}"];
         return escapingChars.Aggregate(text, (current, t) => current.Replace(t, "\\" + t));
     }
-
+    
     public static IRegexBuilder Add(this IRegexBuilder builder, string value)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
         return builder.AddRegexPattern(Escape(value));
     }
 
     public static IRegexBuilder Word(this IRegexBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
         return builder.WordChar().OneOrMoreTimes();
     }
 
     public static IRegexBuilder IntValue(this IRegexBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
         return builder.Digit().OneOrMoreTimes();
     }
 
     public static IRegexBuilder FloatValue(this IRegexBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
         return builder.Digit().OneOrMoreTimes().Dot().ZeroOrOneTime().Digit().ZeroOrMoreTimes();
     }
 
     public static Regex Build(this IRegexBuilder builder, RegexOptions options = RegexOptions.None)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
         return new Regex(builder.ToString(), options);
     }
 }
