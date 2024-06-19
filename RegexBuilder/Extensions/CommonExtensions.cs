@@ -7,12 +7,12 @@ public static class CommonExtensions
 {
     internal static IRegexBuilder Set(this IRegexBuilder builder, string range)
     {
-        return builder.Append(string.Format(CultureInfo.InvariantCulture, "[{0}]", range));
+        return builder.AddRegexPattern(string.Format(CultureInfo.InvariantCulture, "[{0}]", range));
     }
 
     internal static IRegexBuilder NegSet(this IRegexBuilder builder, string range)
     {
-        return builder.Append(string.Format(CultureInfo.InvariantCulture, "[^{0}]", range));
+        return builder.AddRegexPattern(string.Format(CultureInfo.InvariantCulture, "[^{0}]", range));
     }
 
     internal static string Escape(string text)
@@ -30,7 +30,7 @@ public static class CommonExtensions
 
     public static IRegexBuilder Add(this IRegexBuilder builder, string value)
     {
-        return builder.Append(Escape(value));
+        return builder.AddRegexPattern(Escape(value));
     }
 
     public static IRegexBuilder Word(this IRegexBuilder builder)

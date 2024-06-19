@@ -36,46 +36,46 @@ public static class CharacterClassesExtensions
 
     public static IRegexBuilder CharCategory(this IRegexBuilder builder, string category)
     {
-        return builder.Append(string.Format(CultureInfo.InvariantCulture, "\\p{{0}}", category));
+        return builder.AddRegexPattern(string.Format(CultureInfo.InvariantCulture, "\\p{{0}}", category));
     }
 
     public static IRegexBuilder NonCharCategory(this IRegexBuilder builder, string category)
     {
-        return builder.Append(string.Format(CultureInfo.InvariantCulture, "\\P{{0}}", category));
+        return builder.AddRegexPattern(string.Format(CultureInfo.InvariantCulture, "\\P{{0}}", category));
     }
 
     public static IRegexBuilder WordChar(this IRegexBuilder builder)
     {
-        return builder.Append(MetaChars.WordCharacter);
+        return builder.AddRegexPattern(MetaChars.WordCharacter);
     }
 
     public static IRegexBuilder NonWordChar(this IRegexBuilder builder)
     {
-        return builder.Append(MetaChars.NonWordCharacter);
+        return builder.AddRegexPattern(MetaChars.NonWordCharacter);
     }
 
     public static IRegexBuilder WhiteSpace(this IRegexBuilder builder)
     {
-        return builder.Append(MetaChars.WhiteSpace);
+        return builder.AddRegexPattern(MetaChars.WhiteSpace);
     }
 
     public static IRegexBuilder NonWhiteSpace(this IRegexBuilder builder)
     {
-        return builder.Append(MetaChars.NonWhiteSpace);
+        return builder.AddRegexPattern(MetaChars.NonWhiteSpace);
     }
 
     public static IRegexBuilder Digit(this IRegexBuilder builder)
     {
-        return builder.Append(MetaChars.AnyDigit);
+        return builder.AddRegexPattern(MetaChars.AnyDigit);
     }
 
     public static IRegexBuilder NonDigit(this IRegexBuilder builder)
     {
-        return builder.Append(MetaChars.NonDigit);
+        return builder.AddRegexPattern(MetaChars.NonDigit);
     }
 
     public static IRegexBuilder Dot(this IRegexBuilder builder)
     {
-        return builder.Append("\\.");
+        return builder.AddRegexPattern("\\.");
     }
 }

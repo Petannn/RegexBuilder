@@ -4,30 +4,30 @@ public static class GroupExtensions
 {
     public static IRegexBuilder BeginGroup(this IRegexBuilder builder)
     {
-        return builder.Append("(");
+        return builder.AddRegexPattern("(");
     }
 
     public static IRegexBuilder BeginGroup(this IRegexBuilder builder, string name)
     {
-        builder.Append("(?<");
-        builder.Append(name);
-        builder.Append(">");
+        builder.AddRegexPattern("(?<");
+        builder.AddRegexPattern(name);
+        builder.AddRegexPattern(">");
         return builder;
     }
 
     public static IRegexBuilder BeginNonCapturingGroup(this IRegexBuilder builder)
     {
-        return builder.Append("(?:");
+        return builder.AddRegexPattern("(?:");
     }
 
     public static IRegexBuilder BeginAtomicGroup(this IRegexBuilder builder)
     {
-        return builder.Append("(?>");
+        return builder.AddRegexPattern("(?>");
     }
 
     public static IRegexBuilder EndGroup(this IRegexBuilder builder)
     {
-        return builder.Append(")");
+        return builder.AddRegexPattern(")");
     }
 
     public static IRegexBuilder Group(this IRegexBuilder builder, Action<IRegexBuilder> expression)
@@ -42,79 +42,79 @@ public static class GroupExtensions
     {
         builder.BeginGroup(name);
         expression(builder);
-        builder.Append(")");
+        builder.AddRegexPattern(")");
         return builder;
     }
 
     public static IRegexBuilder NonCapturingGroup(this IRegexBuilder builder, Action<IRegexBuilder> expression)
     {
-        builder.Append("(?:");
+        builder.AddRegexPattern("(?:");
         expression(builder);
-        builder.Append(")");
+        builder.AddRegexPattern(")");
         return builder;
     }
 
     public static IRegexBuilder AtomicGroup(this IRegexBuilder builder, Action<IRegexBuilder> expression)
     {
-        builder.Append("(?>");
+        builder.AddRegexPattern("(?>");
         expression(builder);
-        builder.Append(")");
+        builder.AddRegexPattern(")");
         return builder;
     }
 
     public static IRegexBuilder OptionGroup<TCurrent>(this TCurrent builder, Action<IOptionBuilder>? onOption, Action<IOptionBuilder>? offOption, Action<IRegexBuilder> expression)
         where TCurrent : IRegexBuilder, IOptionBuilder
     {
-        builder.Append("(?");
+        builder.AddRegexPattern("(?");
         onOption?.Invoke(builder);
         if (offOption != null)
         {
-            builder.Append("-");
+            builder.AddRegexPattern("-");
             offOption(builder);
         }
-        builder.Append(":");
+        builder.AddRegexPattern(":");
         expression(builder);
-        builder.Append(")");
+        builder.AddRegexPattern(")");
         return builder;
     }
 
     public static IRegexBuilder OptionGroup<TCurrent>(this TCurrent builder, Action<IOptionBuilder>? onOption, Action<IOptionBuilder>? offOption)
         where TCurrent : IRegexBuilder, IOptionBuilder
     {
-        builder.Append("(?");
+        builder.AddRegexPattern("(?");
         onOption?.Invoke(builder);
         if (offOption != null)
         {
-            builder.Append("-");
+            builder.AddRegexPattern("-");
             offOption(builder);
         }
-        builder.Append(")");
+        builder.AddRegexPattern(")");
         return builder;
     }
 
     public static IRegexBuilder OptionGroup(this IRegexBuilder builder, string option, Action<IRegexBuilder> expression)
     {
-        builder.Append("(?");
-        builder.Append(option);
-        builder.Append(":");
+        builder.AddRegexPattern("(?");
+        builder.AddRegexPattern(option);
+        builder.AddRegexPattern(":");
         expression(builder);
-        builder.Append(")");
+        builder.AddRegexPattern(")");
         return builder;
     }
 
     public static IRegexBuilder OptionGroup(this IRegexBuilder builder, string option)
     {
-        builder.Append("(?");
-        builder.Append(option);
-        builder.Append(")");
+        builder.AddRegexPattern("(?");
+        builder.AddRegexPattern(option);
+        builder.AddRegexPattern(")");
         return builder;
     }
 
     public static IRegexBuilder Comment(this IRegexBuilder builder, string comment)
     {
-        builder.Append("(?#");
-        builder.Append(comment);
-        builder.Append(")");
+        builder.AddRegexPattern("(?#");
+        builder.AddRegexPattern(comment);
+        builder.AddRegexPattern(")");
         return builder;
     }
 }

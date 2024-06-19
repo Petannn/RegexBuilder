@@ -4,7 +4,8 @@ namespace RegexBuilder;
 
 public interface IOptionBuilder
 {
-    IOptionBuilder AddOption(string text);
+
+    IOptionBuilder AddOption(string pattern);
 }
 
 public interface IRegexBuilder : IOptionBuilder
@@ -17,15 +18,15 @@ public class RegexBuilder : IRegexBuilder
 {
     private readonly StringBuilder _builder = new();
 
-    public IRegexBuilder Append(string text)
+    public IRegexBuilder AddRegexPattern(string pattern)
     {
-        _builder.Append(text);
+        _builder.Append(pattern);
         return this;
     }
 
-    public IOptionBuilder AddOption(string text)
+    public IOptionBuilder AddOption(string pattern)
     {
-        Append(text);
+        AddRegexPattern(pattern);
         return this;
     }
 

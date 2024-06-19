@@ -4,16 +4,16 @@ public static class BackReferenceExtensions
 {
     public static IRegexBuilder Ref(this IRegexBuilder builder, string name)
     {
-        builder.Append("\\k<");
-        builder.Append(name);
-        builder.Append(">");
+        builder.AddRegexPattern("\\k<");
+        builder.AddRegexPattern(name);
+        builder.AddRegexPattern(">");
         return builder;
     }
 
     public static IRegexBuilder Ref(this IRegexBuilder builder, int groupOrder)
     {
-        builder.Append("\\");
-        builder.Append(groupOrder.ToString());
+        builder.AddRegexPattern("\\");
+        builder.AddRegexPattern(groupOrder.ToString());
         return builder;
     }
 }
