@@ -17,17 +17,8 @@ public static class CommonExtensions
 
     internal static string Escape(string text)
     {
-
-
         string[] escapingChars = ["\\","^",   "$",   ".",   "|",   "?",   "*",   "+",   "(",   ")",   "[",   "]",   "{",   "}"];
-        string[] escapedChars = ["\\\\","\\^", "\\$", "\\.", "\\|", "\\?", "\\*", "\\+", "\\(", "\\)", "\\[", "\\]", "\\{", "\\}"];
-
-        for(var i = 0; i < escapingChars.Length; i++) 
-        {
-            text = text.Replace(escapingChars[i], escapedChars[i]);
-        }
-
-        return text;
+        return escapingChars.Aggregate(text, (current, t) => current.Replace(t, "\\" + t));
     }
 
     public static IRegexBuilder Add(this IRegexBuilder builder, string value)
