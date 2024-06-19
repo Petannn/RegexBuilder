@@ -20,7 +20,13 @@ public static class CommonExtensions
         string[] escapingChars = ["\\","^",   "$",   ".",   "|",   "?",   "*",   "+",   "(",   ")",   "[",   "]",   "{",   "}"];
         return escapingChars.Aggregate(text, (current, t) => current.Replace(t, "\\" + t));
     }
-    
+
+    /// <summary>
+    /// Add characters to be searched
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static IRegexBuilder Add(this IRegexBuilder builder, string value)
     {
         ArgumentNullException.ThrowIfNull(builder, nameof(builder));
