@@ -5,7 +5,7 @@ namespace RegexBuilder.Tests;
 internal class RepresentationsTests
 {
     [TestCase((char)120, "\\170")]
-    [TestCase((char)4, "\\004")]
+    [TestCase((char)0, "\\000")]
     public void Octal(char ch, string expected)
     {
         var builder = new RegexBuilder();
