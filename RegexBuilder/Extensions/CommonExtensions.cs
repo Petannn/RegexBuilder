@@ -17,8 +17,10 @@ public static class CommonExtensions
 
     internal static string Escape(string text)
     {
-        string[] escapingChars = ["^",   "$",   ".",   "|",   "?",   "*",   "+",   "(",   ")",   "[",   "]",   "{",   "}"];
-        string[] escapedChars = ["\\^", "\\$", "\\.", "\\|", "\\?", "\\*", "\\+", "\\(", "\\)", "\\[", "\\]", "\\{", "\\}"];
+
+
+        string[] escapingChars = ["\\","^",   "$",   ".",   "|",   "?",   "*",   "+",   "(",   ")",   "[",   "]",   "{",   "}"];
+        string[] escapedChars = ["\\\\","\\^", "\\$", "\\.", "\\|", "\\?", "\\*", "\\+", "\\(", "\\)", "\\[", "\\]", "\\{", "\\}"];
 
         for(var i = 0; i < escapingChars.Length; i++) 
         {

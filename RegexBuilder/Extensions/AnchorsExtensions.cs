@@ -4,40 +4,40 @@ public static class AnchorsExtensions
 {
     public static IRegexBuilder LineMustStartWith(this IRegexBuilder builder, string value)
     {
-        return builder.Add(Anchors.StartLine).Add(value);
+        return builder.AddRegexPattern(Anchors.StartLine).Add(value);
     }
 
     public static IRegexBuilder MustStartWith(this IRegexBuilder builder, string value)
     {
-        return builder.Add(Anchors.StartString).Add(value);
+        return builder.AddRegexPattern(Anchors.StartString).Add(value);
     }
 
     public static IRegexBuilder LineMustEndWith(this IRegexBuilder builder, string value)
     {
-        return builder.Add(Anchors.EndLine).Add(value);
+        return builder.AddRegexPattern(Anchors.EndLine).Add(value);
     }
 
     public static IRegexBuilder MustEndWith(this IRegexBuilder builder, string value)
     {
-        return builder.Add(Anchors.EndString).Add(value);
+        return builder.AddRegexPattern(Anchors.EndString).Add(value);
     }
     public static IRegexBuilder MustEndOrLasLineEndWith(this IRegexBuilder builder, string value)
     {
-        return builder.Add(Anchors.EndStringOrEndLine).Add(value);
+        return builder.AddRegexPattern(Anchors.EndStringOrEndLine).Add(value);
     }
 
     public static IRegexBuilder PreviousMatchEnd(this IRegexBuilder builder)
     {
-        return builder.Add(Anchors.PreviousMatchEnd);
+        return builder.AddRegexPattern(Anchors.PreviousMatchEnd);
     }
 
     public static IRegexBuilder WordBoundary(this IRegexBuilder builder)
     {
-        return builder.Add(Anchors.WordBoundary);
+        return builder.AddRegexPattern(Anchors.WordBoundary);
     }
 
     public static IRegexBuilder NonWordBoundary(this IRegexBuilder builder)
     {
-        return builder.Add(Anchors.NonWordBoundary);
+        return builder.AddRegexPattern(Anchors.NonWordBoundary);
     }
 }
