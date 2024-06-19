@@ -10,12 +10,31 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>RegexBuilder</Title>
     <Authors>Petr Oščádal</Authors>
+    <Description>Fluent Regex Construction Library. RegexBuilder is a library designed to simplify the creation of regular expressions using fluent extension methods. This library allows you to build complex regular expressions in a readable and maintainable way.</Description>
+    <PackageProjectUrl>https://github.com/Petannn/RegexBuilder</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Petannn/RegexBuilder</RepositoryUrl>
+    <PackageTags>Regex, RegexBuilder, Builder, Pattern, </PackageTags>
+    <PackageReleaseNotes>Init release</PackageReleaseNotes>
+    <Copyright>MIT License</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
 			<_Parameter1>RegexBuilder.Tests</_Parameter1>
 		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
