@@ -29,6 +29,18 @@ internal class GroupTests
     }
 
     [Test]
+    public void BalancingGroupWithContent()
+    {
+        var builder = new RegexBuilder();
+        builder.BalancingGroup("name1", "name2", q =>
+            q.Add("a")
+                .Add("b")
+                .Or()
+                .Add("c"));
+        Assert.That(builder.ToString(), Is.EqualTo("(?<name1-name2>ab|c)"));
+    }
+
+    [Test]
     public void NonCapturingGroup()
     {
         var builder = new RegexBuilder();
