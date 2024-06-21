@@ -8,10 +8,10 @@ public static class AnchorsExtensions
     /// <param name="builder"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static IRegexBuilder LineMustStartWith(this IRegexBuilder builder, string value)
+    public static IRegexBuilder LineStart(this IRegexBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder, nameof(builder));
-        return builder.AddRegexPattern(Anchors.StartLine).Add(value);
+        return builder.AddRegexPattern(Anchors.StartLine);
     }
 
     /// <summary>
@@ -20,22 +20,23 @@ public static class AnchorsExtensions
     /// <param name="builder"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static IRegexBuilder MustStartWith(this IRegexBuilder builder, string value)
+    public static IRegexBuilder StringStart(this IRegexBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder, nameof(builder));
-        return builder.AddRegexPattern(Anchors.StartString).Add(value);
+        return builder.AddRegexPattern(Anchors.StartString);
     }
 
+   
     /// <summary>
     /// By default, the match must occur at the end of the string or before \n at the end of the string; in multiline mode, it must occur before the end of the line or before \n at the end of the line.
     /// </summary>
     /// <param name="builder"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static IRegexBuilder LineMustEndWith(this IRegexBuilder builder, string value)
+    public static IRegexBuilder LineEnd(this IRegexBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder, nameof(builder));
-        return builder.AddRegexPattern(Anchors.EndLine).Add(value);
+        return builder.AddRegexPattern(Anchors.EndLine);
     }
 
     /// <summary>
@@ -44,10 +45,10 @@ public static class AnchorsExtensions
     /// <param name="builder"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static IRegexBuilder MustEndWith(this IRegexBuilder builder, string value)
+    public static IRegexBuilder StringEnd(this IRegexBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder, nameof(builder));
-        return builder.AddRegexPattern(Anchors.EndString).Add(value);
+        return builder.AddRegexPattern(Anchors.EndString);
     }
 
     /// <summary>
@@ -56,10 +57,10 @@ public static class AnchorsExtensions
     /// <param name="builder"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static IRegexBuilder MustEndOrLasLineEndWith(this IRegexBuilder builder, string value)
+    public static IRegexBuilder StringEndOrLastLineEnd(this IRegexBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder, nameof(builder));
-        return builder.AddRegexPattern(Anchors.EndStringOrEndLine).Add(value);
+        return builder.AddRegexPattern(Anchors.EndStringOrEndLine);
     }
 
     /// <summary>
