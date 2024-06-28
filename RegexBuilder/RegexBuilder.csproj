@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/Petannn/RegexBuilder</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Petannn/RegexBuilder</RepositoryUrl>
-    <PackageTags>Regex, RegexBuilder, Builder, Pattern, </PackageTags>
+    <PackageTags>Regex, RegexBuilder, Builder, Pattern, Text, String, Regular Expressions, String Manipulation</PackageTags>
     <PackageReleaseNotes>Init release</PackageReleaseNotes>
     <Copyright>MIT License</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
